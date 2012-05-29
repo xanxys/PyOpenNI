@@ -29,9 +29,20 @@ See the [github page](https://github.com/jmendeth/PyOpenNI) if you want to submi
 Things you'll need:
 
  - [GIT](http://git-scm.org) to download
- - [OpenNI](http://openni.org) and [Python](http://python.org) (obviously)
+ - [OpenNI](http://openni.org) and [Python](http://python.org) 2.7 or higher
  - [CMake](http://cmake.org)
  - A compiler for your platform (GCC, XCode, VS, MinGW, ...)
+
+> **Note:** if you have installed Python via a package manager,
+> you'll also need the development files, because sometimes the
+> CPython API is used directly.
+
+Via APT (if you are on Debian / Ubuntu):
+
+```bash
+sudo apt-get install cmake build-essentials git-core \
+                     python-dev libboost-python-dev
+```
 
 Then, assuming Git and CMake are installed and in your PATH:
 
