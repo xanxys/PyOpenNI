@@ -26,8 +26,6 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 #include <Python.h>
-#include <python2.7/intobject.h>
-#include <python2.7/object.h>
 
 namespace pyopenni {
 
