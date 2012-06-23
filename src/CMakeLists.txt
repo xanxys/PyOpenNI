@@ -23,8 +23,8 @@
 
 
 # Find the needed libraries
-find_package (PythonInterp REQUIRED)
-find_package (PythonLibs REQUIRED)
+find_package (PythonInterp 2.7 REQUIRED)
+find_package (PythonLibs 2.7 REQUIRED)
 include_directories(${PYTHON_INCLUDE_DIRS})
 set(LIBS ${LIBS} ${PYTHON_LIBRARIES})
 
