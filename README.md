@@ -40,7 +40,7 @@ Things you'll need:
 Via APT (if you are on Debian / Ubuntu):
 
 ```bash
-sudo apt-get install cmake build-essentials git-core \
+sudo apt-get install cmake build-essential git-core \
                      python-dev libboost-python-dev
 ```
 
