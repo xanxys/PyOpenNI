@@ -177,7 +177,7 @@ BP::list DepthGenerator_ToProjective(xn::DepthGenerator& self, BP::list points) 
     	pts[i] = convertToVec3D((boost::python::list) points[i]);
     }
     
-    check( self.ConvertProjectiveToRealWorld(num_of_points, pts, pts) );
+    check( self.ConvertRealWorldToProjective(num_of_points, pts, pts) );
     
     BP::list pros;
     for (int i = 0 ; i < num_of_points ; ++i) {
