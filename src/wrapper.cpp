@@ -44,6 +44,7 @@
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
+#include "HandsGeneratorWrapper.h"
 #include "AudioGeneratorWrapper.h"
 #include "SceneAnalyzerWrapper.h"
 #include "DepthMapWrapper.h"
@@ -653,6 +654,22 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_com", &UserGenerator_GetCoM_wrapped)
             .def("register_user_cb", &UserGenerator_RegisterUserCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
             .def("unregister_user_cb", &UserGenerator_UnregisterUserCallbacks_wrapped)
+
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class HandsGenerator
+
+    class_< xn::HandsGenerator,
+            bases<xn::Generator> >("HandsGenerator")
+
+            // capabilities
+
+            // methods
+
+            .def("create", &HandsGenerator_Create_wrapped)
+            .def("register_hand_cb", &HandsGenerator_RegisterHandCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
 
             ;
 
