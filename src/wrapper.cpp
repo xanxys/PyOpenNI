@@ -670,6 +670,7 @@ BOOST_PYTHON_MODULE(openni) {
 
             .def("create", &HandsGenerator_Create_wrapped)
             .def("register_hand_cb", &HandsGenerator_RegisterHandCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
+            .def("start_tracking", &HandsGenerator_StartTracking_wrapped)
 
             ;
 

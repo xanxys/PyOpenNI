@@ -47,23 +47,27 @@ XnCallbackHandle HandsGenerator_RegisterHandCallbacks_wrapped(xn::HandsGenerator
     return handle;
 }
 
+void HandsGenerator_StartTracking_wrapped(xn::HandsGenerator& self, BP::list point) {
+    check( self.StartTracking(convertToVec3D((boost::python::list) point)) );
+}
+
 /** Internal callback implementations **/
 void XN_CALLBACK_TYPE Create_callback(xn::HandsGenerator& src, XnUserID user, const XnPoint3D *pPosition, XnFloat fTime, void* cookie) {
     BP::object& func = ((BP::object*)cookie)[0];
     
     //Call the function
-    func(src, user, pPosition, fTime);
+    func(src, user, convertVec3D(*pPosition), fTime);
 }
 
 void XN_CALLBACK_TYPE Update_callback(xn::HandsGenerator& src, XnUserID user, const XnPoint3D *pPosition, XnFloat fTime, void* cookie) {
-    BP::object& func = ((BP::object*)cookie)[0];
+    BP::object& func = ((BP::object*)cookie)[1];
     
     //Call the function
-    func(src, user, pPosition, fTime);
+    func(src, user, convertVec3D(*pPosition), fTime);
 }
 
 void XN_CALLBACK_TYPE Destroy_callback(xn::HandsGenerator& src, XnUserID user, XnFloat fTime, void* cookie) {
-    BP::object& func = ((BP::object*)cookie)[0];
+    BP::object& func = ((BP::object*)cookie)[2];
     
     //Call the function
     func(src, user, fTime);
