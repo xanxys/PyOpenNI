@@ -51,5 +51,5 @@ context.start_generating_all()
 print 'Make a Wave to start tracking...'
 
 while True:
-    context.wait_and_update_all()
+    context.wait_any_update_all()
 # while
