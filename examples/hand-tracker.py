@@ -34,7 +34,6 @@ def create(src, id, pos, time):
 # create
 
 def update(src, id, pos, time):
-    projective_pos = depth_generator.to_projective([pos])[0]
     print 'Update ', id, pos
 # update
 
@@ -52,5 +51,5 @@ context.start_generating_all()
 print 'Make a Wave to start tracking...'
 
 while True:
-    n_ret_val = context.wait_and_update_all()
+    context.wait_and_update_all()
 # while
