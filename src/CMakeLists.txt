@@ -97,6 +97,8 @@ set (SOURCES
     GestureGeneratorWrapper.h
     UserGeneratorWrapper.cpp
     UserGeneratorWrapper.h
+    HandsGeneratorWrapper.cpp
+    HandsGeneratorWrapper.h
     ContextWrapper.cpp
     ContextWrapper.h
     AudioGeneratorWrapper.cpp

@@ -57,6 +57,9 @@ BP::object wrapNode(XnNodeHandle node) {
             if (isInstanceOf(original, XN_NODE_TYPE_USER)) {
                 return BP::object(xn::UserGenerator(node));
             }
+            if (isInstanceOf(original, XN_NODE_TYPE_HANDS)) {
+                return BP::object(xn::HandsGenerator(node));
+            }
             if (isInstanceOf(original, XN_NODE_TYPE_AUDIO)) {
                 return BP::object(xn::AudioGenerator(node));
             }
