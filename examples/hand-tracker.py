@@ -1,8 +1,6 @@
 #! /usr/bin/python
 
 from openni import *
-import numpy
-import cv
 
 context = Context()
 context.init()
