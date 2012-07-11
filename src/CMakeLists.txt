@@ -75,6 +75,8 @@ set (SOURCES
     ImageMetaDataWrapper.h
     DepthMetaDataWrapper.cpp
     DepthMetaDataWrapper.h
+    IRMetaDataWrapper.cpp
+    IRMetaDataWrapper.h
     SkeletonJointWrapper.cpp
     SkeletonJointWrapper.h
     CapabilityWrapper.cpp
@@ -91,6 +93,8 @@ set (SOURCES
     MapGeneratorWrapper.h
     ImageGeneratorWrapper.cpp
     ImageGeneratorWrapper.h
+    IRGeneratorWrapper.cpp
+    IRGeneratorWrapper.h
     DepthGeneratorWrapper.cpp
     DepthGeneratorWrapper.h
     GestureGeneratorWrapper.cpp
@@ -107,6 +111,8 @@ set (SOURCES
     SceneAnalyzerWrapper.h
     DepthMapWrapper.cpp
     DepthMapWrapper.h
+    IRMapWrapper.cpp
+    IRMapWrapper.h
     PointMapWrapper.cpp
     PointMapWrapper.h
     AudioMetaDataWrapper.cpp
