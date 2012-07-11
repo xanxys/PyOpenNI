@@ -20,7 +20,6 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-
 #include "DepthGeneratorWrapper.h"
 
 #include "wrapperTypes.h"

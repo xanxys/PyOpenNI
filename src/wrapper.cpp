@@ -33,6 +33,7 @@
 #include "MapMetaDataWrapper.h"
 #include "DepthMetaDataWrapper.h"
 #include "ImageMetaDataWrapper.h"
+#include "IRMetaDataWrapper.h"
 #include "SkeletonJointWrapper.h"
 #include "CapabilityWrapper.h"
 #include "PoseDetectionCapabilityWrapper.h"
@@ -41,6 +42,7 @@
 #include "GeneratorWrapper.h"
 #include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
+#include "IRGeneratorWrapper.h"
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
@@ -48,6 +50,7 @@
 #include "AudioGeneratorWrapper.h"
 #include "SceneAnalyzerWrapper.h"
 #include "DepthMapWrapper.h"
+#include "IRMapWrapper.h"
 #include "PointMapWrapper.h"
 #include "AudioMetaDataWrapper.h"
 
@@ -297,6 +300,24 @@ BOOST_PYTHON_MODULE(openni) {
                     "It can be an X,Y tuple (i.e. my_map[x,y])\n"
                     "or an absolute index (i.e. my_map[idx]).");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRMap
+    class_< IRMap > ("IRMap", "Stores a IR map.", no_init)
+            .add_property("size", &IRMap::getSize,
+                    "The dimensions of this map in a\n"
+                    "[width, height] tuple.")
+            .add_property("width", &IRMap::getWidth,
+                    "The width (in pixels) of this map.")
+            .add_property("height", &IRMap::getHeight,
+                    "The height (in pixels) of this map.")
+
+            .def("__len__", &IRMap::getLength,
+                    "Returns the number of pixels in this map.")
+            .def("__getitem__", &IRMap::get_wrapped,
+                    "Returns the pixel at the specified location.\n"
+                    "It can be an X,Y tuple (i.e. my_map[x,y])\n"
+                    "or an absolute index (i.e. my_map[idx]).");
+
 
     ////////////////////////////////////////////////////////////////////////////
     // class PointMap
@@ -358,6 +379,13 @@ BOOST_PYTHON_MODULE(openni) {
     
             .add_property("z_res", &DepthMetaData_ZRes )
     
+            ;
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRMetaData
+
+    class_< xn::IRMetaData,
+            bases<xn::MapMetaData>, boost::noncopyable> ("IRMetaData", no_init)
             ;
 
 
@@ -606,6 +634,27 @@ BOOST_PYTHON_MODULE(openni) {
 
             .add_property("metadata",
                     make_function(&DepthGenerator_GetMetaData_wrapped,
+                    return_value_policy<manage_new_object>()))
+
+            ;
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRGenerator
+
+    class_< xn::IRGenerator,
+            bases< xn::MapGenerator > >("IRGenerator")
+
+            // methods
+
+            .def("create", &IRGenerator_Create_wrapped)
+
+            .add_property("map", &IRGenerator_GetWrappedMap)
+
+            .def("get_tuple_ir_map",
+                    &IRGenerator_GetIRMapTuple_wrapped)
+
+            .add_property("metadata",
+                    make_function(&IRGenerator_GetMetaData_wrapped,
                     return_value_policy<manage_new_object>()))
 
             ;
