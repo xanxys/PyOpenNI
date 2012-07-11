@@ -7,4 +7,5 @@
 ## Contributors ##
 
 **Andrei Ostanin** [ostanin.org](http://ostanin.org) ([@aostanin](https://github.com/aostanin)): Fixed and improved PyOpenNI support on Mac OSX.  
-**Andy Li** <andy@onthewings.net> ([@andyli](https://github.com/andyli)): Improvements & optimizations with the `DepthGenerator.convert_[...]` methods.
+**Andy Li** <andy@onthewings.net> ([@andyli](https://github.com/andyli)): Improvements & optimizations with the `DepthGenerator.convert_[...]` methods.  
+**Justin Israel** <justinisrael@gmail.com> ([@justinfx](https://github.com/justinfx)): Python fixes (min. required version, imports)   
