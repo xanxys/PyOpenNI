@@ -37,6 +37,7 @@
 #include "IRMetaDataWrapper.h"
 #include "SkeletonJointWrapper.h"
 #include "CapabilityWrapper.h"
+#include "AlternativeViewPointCapabilityWrapper.h"
 #include "PoseDetectionCapabilityWrapper.h"
 #include "SkeletonCapabilityWrapper.h"
 #include "ProductionNodeWrapper.h"
@@ -446,6 +447,18 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
+    // class AlternativeViewPointCapability
+
+    class_< xn::AlternativeViewPointCapability,
+            bases<xn::Capability> > ("AlternativeViewPointCapability", no_init)
+
+            .def("set_view_point", &AlternativeViewPointCapability_SetViewPoint_wrapped)
+            .def("is_view_point_as", &AlternativeViewPointCapability_IsViewPointAs_wrapped)
+
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
     // class PoseDetectionCapability
 
     class_< xn::PoseDetectionCapability,
@@ -553,6 +566,9 @@ BOOST_PYTHON_MODULE(openni) {
 
     class_< xn::Generator,
             bases<xn::ProductionNode> > ("Generator", Generator_DOC, no_init)
+
+            //capabilities
+            .add_property("alternative_view_point_cap", &Generator_GetAlternativeViewPointCap_wrapped)
 
             //methods
             .def("start_generating", &Generator_StartGenerating_wrapped, Generator_StartGenerating_DOC)

@@ -83,6 +83,8 @@ set (SOURCES
     SkeletonJointWrapper.h
     CapabilityWrapper.cpp
     CapabilityWrapper.h
+    AlternativeViewPointCapabilityWrapper.cpp
+    AlternativeViewPointCapabilityWrapper.h
     PoseDetectionCapabilityWrapper.cpp
     PoseDetectionCapabilityWrapper.h
     SkeletonCapabilityWrapper.cpp

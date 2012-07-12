@@ -38,6 +38,16 @@ void Generator_StopGenerating_wrapped(xn::Generator& self) {
     check( self.StopGenerating() );
 }
 
+xn::AlternativeViewPointCapability Generator_GetAlternativeViewPointCap_wrapped(xn::Generator& self) {
+    checkValid(self);
+    
+    if (!self.IsCapabilitySupported(XN_CAPABILITY_ALTERNATIVE_VIEW_POINT)) {
+        return NULL;
+    }
+    
+    return self.GetAlternativeViewPointCap();
+}
+
 void Generator_WaitAndUpdateData_wrapped(xn::Generator& self) {
     checkValid(self);
     
