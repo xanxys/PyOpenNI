@@ -75,6 +75,8 @@ set (SOURCES
     ImageMetaDataWrapper.h
     DepthMetaDataWrapper.cpp
     DepthMetaDataWrapper.h
+    SceneMetaDataWrapper.cpp
+    SceneMetaDataWrapper.h
     IRMetaDataWrapper.cpp
     IRMetaDataWrapper.h
     SkeletonJointWrapper.cpp
