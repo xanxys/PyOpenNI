@@ -32,9 +32,12 @@
 #include "OutputMetaDataWrapper.h"
 #include "MapMetaDataWrapper.h"
 #include "DepthMetaDataWrapper.h"
+#include "SceneMetaDataWrapper.h"
 #include "ImageMetaDataWrapper.h"
+#include "IRMetaDataWrapper.h"
 #include "SkeletonJointWrapper.h"
 #include "CapabilityWrapper.h"
+#include "AlternativeViewPointCapabilityWrapper.h"
 #include "PoseDetectionCapabilityWrapper.h"
 #include "SkeletonCapabilityWrapper.h"
 #include "ProductionNodeWrapper.h"
@@ -43,6 +46,7 @@
 #include "GeneratorWrapper.h"
 #include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
+#include "IRGeneratorWrapper.h"
 #include "DepthGeneratorWrapper.h"
 #include "GestureGeneratorWrapper.h"
 #include "UserGeneratorWrapper.h"
@@ -50,6 +54,7 @@
 #include "AudioGeneratorWrapper.h"
 #include "SceneAnalyzerWrapper.h"
 #include "DepthMapWrapper.h"
+#include "IRMapWrapper.h"
 #include "PointMapWrapper.h"
 #include "AudioMetaDataWrapper.h"
 
@@ -312,6 +317,24 @@ BOOST_PYTHON_MODULE(openni) {
                     "It can be an X,Y tuple (i.e. my_map[x,y])\n"
                     "or an absolute index (i.e. my_map[idx]).");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRMap
+    class_< IRMap > ("IRMap", "Stores a IR map.", no_init)
+            .add_property("size", &IRMap::getSize,
+                    "The dimensions of this map in a\n"
+                    "[width, height] tuple.")
+            .add_property("width", &IRMap::getWidth,
+                    "The width (in pixels) of this map.")
+            .add_property("height", &IRMap::getHeight,
+                    "The height (in pixels) of this map.")
+
+            .def("__len__", &IRMap::getLength,
+                    "Returns the number of pixels in this map.")
+            .def("__getitem__", &IRMap::get_wrapped,
+                    "Returns the pixel at the specified location.\n"
+                    "It can be an X,Y tuple (i.e. my_map[x,y])\n"
+                    "or an absolute index (i.e. my_map[idx]).");
+
 
     ////////////////////////////////////////////////////////////////////////////
     // class PointMap
@@ -375,6 +398,20 @@ BOOST_PYTHON_MODULE(openni) {
     
             ;
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRMetaData
+
+    class_< xn::IRMetaData,
+            bases<xn::MapMetaData>, boost::noncopyable> ("IRMetaData", no_init)
+            ;
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class SceneMetaData
+
+    class_< xn::SceneMetaData,
+            bases<xn::MapMetaData>, boost::noncopyable> ("SceneMetaData", no_init)
+            ;
+
 
     ////////////////////////////////////////////////////////////////////////////
     // class AudioMetaData
@@ -420,6 +457,18 @@ BOOST_PYTHON_MODULE(openni) {
     // class Capability
 
     class_< xn::Capability > ("Capability", no_init)
+
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class AlternativeViewPointCapability
+
+    class_< xn::AlternativeViewPointCapability,
+            bases<xn::Capability> > ("AlternativeViewPointCapability", no_init)
+
+            .def("set_view_point", &AlternativeViewPointCapability_SetViewPoint_wrapped)
+            .def("is_view_point_as", &AlternativeViewPointCapability_IsViewPointAs_wrapped)
 
             ;
 
@@ -560,6 +609,9 @@ BOOST_PYTHON_MODULE(openni) {
     class_< xn::Generator,
             bases<xn::ProductionNode> > ("Generator", Generator_DOC, no_init)
 
+            //capabilities
+            .add_property("alternative_view_point_cap", &Generator_GetAlternativeViewPointCap_wrapped)
+
             //methods
             .def("start_generating", &Generator_StartGenerating_wrapped, Generator_StartGenerating_DOC)
             .def("stop_generating", &Generator_StopGenerating_wrapped, Generator_StopGenerating_DOC)
@@ -652,6 +704,27 @@ BOOST_PYTHON_MODULE(openni) {
 
             ;
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class IRGenerator
+
+    class_< xn::IRGenerator,
+            bases< xn::MapGenerator > >("IRGenerator")
+
+            // methods
+
+            .def("create", &IRGenerator_Create_wrapped)
+
+            .add_property("map", &IRGenerator_GetWrappedMap)
+
+            .def("get_tuple_ir_map",
+                    &IRGenerator_GetIRMapTuple_wrapped)
+
+            .add_property("metadata",
+                    make_function(&IRGenerator_GetMetaData_wrapped,
+                    return_value_policy<manage_new_object>()))
+
+            ;
+
 
     ////////////////////////////////////////////////////////////////////////////
     // class GestureGenerator
@@ -694,6 +767,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("create", &UserGenerator_Create_wrapped)
             .def("count_users", &UserGenerator_CountUsers)
             .def("get_com", &UserGenerator_GetCoM_wrapped)
+            .def("get_user_pixels", &UserGenerator_GetUserPixels_wrapped)
             .def("register_user_cb", &UserGenerator_RegisterUserCallbacks_wrapped, return_value_policy<return_opaque_pointer>())
             .def("unregister_user_cb", &UserGenerator_UnregisterUserCallbacks_wrapped)
 

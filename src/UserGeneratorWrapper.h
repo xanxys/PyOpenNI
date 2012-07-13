@@ -35,6 +35,7 @@ xn::SkeletonCapability UserGenerator_GetSkeletonCap_wrapped(xn::UserGenerator& s
 xn::PoseDetectionCapability UserGenerator_GetPoseDetectionCap_wrapped(xn::UserGenerator& self);
 
 BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user);
+BP::tuple UserGenerator_GetUserPixels_wrapped(xn::UserGenerator& self, XnUserID user);
 
 XnCallbackHandle UserGenerator_RegisterUserCallbacks_wrapped(xn::UserGenerator& self, BP::object newUser, BP::object lostUser);
 void UserGenerator_UnregisterUserCallbacks_wrapped(xn::UserGenerator& self, XnCallbackHandle handle);

@@ -21,26 +21,21 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef GENERATOR_WRAPPER_H
-#define	GENERATOR_WRAPPER_H
+#ifndef IR_GENERATOR_WRAPPER_H
+#define IR_GENERATOR_WRAPPER_H
 
 #include "wrapperTypes.h"
+#include "IRMapWrapper.h"
+#include "PointMapWrapper.h"
 
-void Generator_StartGenerating_wrapped(xn::Generator& self);
-void Generator_StopGenerating_wrapped(xn::Generator& self);
+using namespace pyopenni;
 
-xn::AlternativeViewPointCapability Generator_GetAlternativeViewPointCap_wrapped(xn::Generator& self);
+xn::IRMetaData* IRGenerator_GetMetaData_wrapped(xn::IRGenerator const & self);
 
-void Generator_WaitAndUpdateData_wrapped(xn::Generator& self);
+BP::tuple IRGenerator_GetIRMapTuple_wrapped(xn::IRGenerator const & self);
 
-XnBool Generator_IsGenerating_wrapped(xn::Generator& self);
-void Generator_SetGenerating(xn::Generator& self, XnBool value);
+void IRGenerator_Create_wrapped(xn::IRGenerator& self, xn::Context& ctx);
 
-XnBool Generator_IsDataNew_wrapped(xn::Generator& self);
+IRMap IRGenerator_GetWrappedMap(xn::IRGenerator& self);
 
-XnUInt32 Generator_GetDataSize_wrapped(xn::Generator& self);
-
-XnUInt64 Generator_GetTimestamp_wrapped(xn::Generator& self);
-XnUInt32 Generator_GetFrameID_wrapped(xn::Generator& self);
-
-#endif	/* GENERATOR_WRAPPER_H */
+#endif    // IR_GENERATOR_WRAPPER_H

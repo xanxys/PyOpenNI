@@ -21,26 +21,11 @@
  * ***** END GPL LICENSE BLOCK ***** */
 
 
-#ifndef GENERATOR_WRAPPER_H
-#define	GENERATOR_WRAPPER_H
+#ifndef SCENE_META_DATA_WRAPPER_H
+#define	SCENE_META_DATA_WRAPPER_H
 
 #include "wrapperTypes.h"
 
-void Generator_StartGenerating_wrapped(xn::Generator& self);
-void Generator_StopGenerating_wrapped(xn::Generator& self);
+//Currently empty
 
-xn::AlternativeViewPointCapability Generator_GetAlternativeViewPointCap_wrapped(xn::Generator& self);
-
-void Generator_WaitAndUpdateData_wrapped(xn::Generator& self);
-
-XnBool Generator_IsGenerating_wrapped(xn::Generator& self);
-void Generator_SetGenerating(xn::Generator& self, XnBool value);
-
-XnBool Generator_IsDataNew_wrapped(xn::Generator& self);
-
-XnUInt32 Generator_GetDataSize_wrapped(xn::Generator& self);
-
-XnUInt64 Generator_GetTimestamp_wrapped(xn::Generator& self);
-XnUInt32 Generator_GetFrameID_wrapped(xn::Generator& self);
-
-#endif	/* GENERATOR_WRAPPER_H */
+#endif	/* SCENE_META_DATA_WRAPPER_H */

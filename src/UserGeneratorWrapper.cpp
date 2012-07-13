@@ -20,7 +20,6 @@
  *
  * ***** END GPL LICENSE BLOCK ***** */
 
-
 #include "UserGeneratorWrapper.h"
 
 #include "wrapperTypes.h"
@@ -33,7 +32,7 @@ void UserGenerator_Create_wrapped(xn::UserGenerator& self, xn::Context& ctx) {
 
 XnUInt16 UserGenerator_CountUsers(xn::UserGenerator const & self) {
     checkValid(self);
-    
+
     return self.GetNumberOfUsers();
 }
 
@@ -81,6 +80,20 @@ BP::list UserGenerator_GetCoM_wrapped(xn::UserGenerator& self, XnUserID user) {
     XnPoint3D ret;
     check( self.GetCoM(user,ret) );
     return convertVec3D(ret);
+}
+
+BP::tuple UserGenerator_GetUserPixels_wrapped(xn::UserGenerator& self, XnUserID user) {
+    checkValid(self);
+
+    xn::SceneMetaData * metadata = new xn::SceneMetaData;
+    self.GetUserPixels(user, *metadata);
+
+    XnLabel const* sceneMap = metadata->Data();
+
+    BP::tuple mapTuple;
+    convert(mapTuple, sceneMap, metadata->XRes(), metadata->YRes());
+
+    return mapTuple;
 }
 
 XnCallbackHandle UserGenerator_RegisterUserCallbacks_wrapped(xn::UserGenerator& self, BP::object newUser, BP::object lostUser) {
