@@ -41,6 +41,8 @@
 #include "PoseDetectionCapabilityWrapper.h"
 #include "SkeletonCapabilityWrapper.h"
 #include "ProductionNodeWrapper.h"
+#include "RecorderWrapper.h"
+#include "PlayerWrapper.h"
 #include "GeneratorWrapper.h"
 #include "MapGeneratorWrapper.h"
 #include "ImageGeneratorWrapper.h"
@@ -233,6 +235,19 @@ BOOST_PYTHON_MODULE(openni) {
     scope().attr("CAPABILITY_ANTI_FILCKER") = XN_CAPABILITY_ANTI_FILCKER;
     
     
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // capability names
+
+    scope().attr("CODEC_NULL") = XN_CODEC_NULL;
+    scope().attr("CODEC_UNCOMPRESSED") = XN_CODEC_UNCOMPRESSED;
+    scope().attr("CODEC_JPEG") = XN_CODEC_JPEG;
+    scope().attr("CODEC_16Z") = XN_CODEC_16Z;
+    scope().attr("CODEC_16Z_EMB_TABLES") = XN_CODEC_16Z_EMB_TABLES;
+    scope().attr("CODEC_8Z") = XN_CODEC_8Z;
+
+
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -541,6 +556,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
+            .def("open_file_recording", &Context_OpenFileRecording_wrapped, Context_OpenFileRecording_DOC)
 
             .add_property("valid", &Context_IsValid, Context_valid_DOC)
 
@@ -559,6 +575,32 @@ BOOST_PYTHON_MODULE(openni) {
             .add_property("context", &ProductionNode_GetContext_wrapped, ProductionNode_context_DOC)
 
             ;//TODO: add optional params
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Recorder
+
+    class_< xn::Recorder,
+            bases<xn::ProductionNode > >("Recorder")
+
+            //methods
+            .def("create", &Recorder_Create_wrapped)
+            .def("set_destination", &Recorder_SetDestination_wrapped)
+            .def("rem_node_from_rec", &Recorder_RemoveNodeFromRecording_wrapped)
+            .def("add_node_to_rec", &Recorder_AddNodeToRecording_wrapped)
+            .def("add_node_to_rec", &Recorder_AddNodeToRecording_WithComp_wrapped)
+            .def("record", &Recorder_Record_wrapped)
+            ;
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // class Player
+
+    class_< xn::Player,
+            bases<xn::ProductionNode > >("Player")
+
+            //methods
+            ;
 
 
     ////////////////////////////////////////////////////////////////////////////

@@ -91,6 +91,10 @@ set (SOURCES
     SkeletonCapabilityWrapper.h
     ProductionNodeWrapper.cpp
     ProductionNodeWrapper.h
+    RecorderWrapper.cpp
+    RecorderWrapper.h
+    PlayerWrapper.cpp
+    PlayerWrapper.h
     GeneratorWrapper.cpp
     GeneratorWrapper.h
     MapGeneratorWrapper.cpp

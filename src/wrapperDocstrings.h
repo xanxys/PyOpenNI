@@ -57,6 +57,14 @@ const char* Context_WaitNoneUpdateAll_DOC =
 const char* Context_WaitOneUpdateAll_DOC =
     "Updates all generators nodes in the context,\n"
     "waiting for a specific one to have new data.";
+const char* Context_OpenFileRecording_DOC =
+    "OpenNI provides great flexibility of recording.\n"
+    "You can decide you want to record only the final output, e.g.,\n"
+    "just a skeleton in movement; or record both the output skeleton\n"
+    "and the depth input; or record only the depth input and then\n"
+    "recreate the skeleton at run-time after reading the recorded\n"
+    "raw depth data. You can also choose which nodes to record.";
+
 
 
 //ProductionNode class documentation

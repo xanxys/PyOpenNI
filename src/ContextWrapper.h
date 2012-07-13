@@ -34,6 +34,8 @@ void Context_WaitAndUpdateAll_wrapped(xn::Context& self);
 void Context_WaitNoneUpdateAll_wrapped(xn::Context& self);
 void Context_WaitOneUpdateAll_wrapped(xn::Context& self, xn::ProductionNode& node);
 
+xn::ProductionNode Context_OpenFileRecording_wrapped(xn::Context& self, const std::string& recordedFile);
+
 void Context_StartGeneratingAll_wrapped(xn::Context& self);
 void Context_StopGeneratingAll_wrapped(xn::Context& self);
 
