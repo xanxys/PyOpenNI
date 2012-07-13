@@ -65,6 +65,12 @@ BP::object wrapNode(XnNodeHandle node) {
             }
             return BP::object(xn::Generator(node));
         }
+        if (isInstanceOf(original, XN_NODE_TYPE_RECORDER)) {
+            return BP::object(xn::Recorder(node));
+        }
+        if (isInstanceOf(original, XN_NODE_TYPE_PLAYER)) {
+            return BP::object(xn::Player(node));
+        }
         return BP::object(xn::ProductionNode(node));
     }
     
