@@ -29,7 +29,7 @@
 void Recorder_Create_wrapped(xn::Recorder& self, xn::Context& ctx);
 
 void Recorder_SetDestination_wrapped(xn::Recorder& self, const std::string& strDest);
-// std:string Recorder_GetDestination_wrapped(xn::Recorder& self, XnRecordMedium destType);
+std::string Recorder_GetDestination_wrapped(xn::Recorder& self);
 
 void Recorder_AddNodeToRecording_wrapped(xn::Recorder& self, xn::ProductionNode& node);
 void Recorder_AddNodeToRecording_WithComp_wrapped(xn::Recorder& self, xn::ProductionNode& node, unsigned int compression);

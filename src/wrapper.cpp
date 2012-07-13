@@ -238,7 +238,7 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // capability names
+    // codec names
 
     scope().attr("CODEC_NULL") = XN_CODEC_NULL;
     scope().attr("CODEC_UNCOMPRESSED") = XN_CODEC_UNCOMPRESSED;
@@ -556,7 +556,11 @@ BOOST_PYTHON_MODULE(openni) {
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
-            .def("open_file_recording", &Context_OpenFileRecording_wrapped, Context_OpenFileRecording_DOC)
+            
+            .def("open_file_recording", &Context_OpenFileRecording_wrapped, 
+                return_value_policy<manage_new_object>(),
+                Context_OpenFileRecording_DOC
+                )
 
             .add_property("valid", &Context_IsValid, Context_valid_DOC)
 
@@ -585,11 +589,17 @@ BOOST_PYTHON_MODULE(openni) {
 
             //methods
             .def("create", &Recorder_Create_wrapped)
-            .def("set_destination", &Recorder_SetDestination_wrapped)
             .def("rem_node_from_rec", &Recorder_RemoveNodeFromRecording_wrapped)
             .def("add_node_to_rec", &Recorder_AddNodeToRecording_wrapped)
             .def("add_node_to_rec", &Recorder_AddNodeToRecording_WithComp_wrapped)
             .def("record", &Recorder_Record_wrapped)
+
+            //properties
+            .add_property("destination", 
+                make_function(
+                    &Recorder_GetDestination_wrapped, 
+                    return_value_policy<return_by_value>()), 
+                &Recorder_SetDestination_wrapped)
             ;
 
 
