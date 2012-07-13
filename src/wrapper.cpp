@@ -91,6 +91,7 @@ BOOST_PYTHON_MODULE(openni) {
     // global constants
 
     scope().attr("STATUS_OK") = XN_STATUS_OK;
+    scope().attr("PLAYBACK_SPEED_FASTEST") = XN_PLAYBACK_SPEED_FASTEST;
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -556,11 +557,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
-            
-            .def("open_file_recording", &Context_OpenFileRecording_wrapped, 
-                return_value_policy<manage_new_object>(),
-                Context_OpenFileRecording_DOC
-                )
+            .def("open_file_recording", &Context_OpenFileRecording_wrapped, Context_OpenFileRecording_DOC)
 
             .add_property("valid", &Context_IsValid, Context_valid_DOC)
 
@@ -610,6 +607,18 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::ProductionNode > >("Player")
 
             //methods
+            .def("create", &Player_Create_wrapped)
+            .def("set_repeat", &Player_SetRepeat)
+            .def("read_next", &Player_ReadNext)
+
+            //properties
+            .add_property("source", 
+                make_function(
+                    &Player_GetSource, 
+                    return_value_policy<return_by_value>()), 
+                &Player_SetSource)
+            .add_property("playback_speed", &Player_GetPlaybackSpeed, &Player_SetPlaybackSpeed)
+            .add_property("eof", &Player_IsEOF)
             ;
 
 

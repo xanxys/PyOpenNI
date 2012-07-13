@@ -77,15 +77,14 @@ void Context_Init_wrapped(xn::Context& self) {
     check(returnCode);    
 }
 
-xn::ProductionNode Context_OpenFileRecording_wrapped(xn::Context& self, const std::string& recordedFile) {
+BP::object Context_OpenFileRecording_wrapped(xn::Context& self, const std::string& recordedFile) {
 #ifdef _DEBUG
     PyCout << "Loading recorded file.." << std::endl;
 #endif
 
     XnStatus returnCode;
-    // TODO: Figure out how to return a valid xn::Player node
-    xn::ProductionNode node;
-    returnCode = self.OpenFileRecording(recordedFile.c_str(), node);
+    // xn::Player * node = new xn::Player;
+    returnCode = self.OpenFileRecording(recordedFile.c_str());
 
 #ifdef _DEBUG
     if (returnCode == XN_STATUS_OK)
@@ -98,7 +97,7 @@ xn::ProductionNode Context_OpenFileRecording_wrapped(xn::Context& self, const st
 
     check( returnCode );
 
-    return node;
+    return Context_FindExistingNode_wrapped(self, XN_NODE_TYPE_PLAYER);
 }
 
 void Context_WaitAndUpdateAll_wrapped(xn::Context& self) {

@@ -26,5 +26,18 @@
 
 #include "wrapperTypes.h"
 
+void Player_Create_wrapped(xn::Player& self, xn::Context& ctx);
+
+void Player_SetRepeat(xn::Player& self, XnBool bRepeat);
+
+void Player_ReadNext(xn::Player& self);
+
+XnBool Player_IsEOF(xn::Player& self);
+
+void Player_SetSource(xn::Player& self, const std::string &sourceFile);
+std::string Player_GetSource(xn::Player& self);
+
+XnDouble Player_GetPlaybackSpeed(xn::Player& self);
+void Player_SetPlaybackSpeed(xn::Player& self, XnDouble dSpeed);
 
 #endif	/* PLAYER_WRAPPER_H */
