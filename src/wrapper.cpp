@@ -91,6 +91,7 @@ BOOST_PYTHON_MODULE(openni) {
     // global constants
 
     scope().attr("STATUS_OK") = XN_STATUS_OK;
+    scope().attr("PLAYBACK_SPEED_FASTEST") = XN_PLAYBACK_SPEED_FASTEST;
 
 
     ////////////////////////////////////////////////////////////////////////////
@@ -238,7 +239,7 @@ BOOST_PYTHON_MODULE(openni) {
 
 
     ////////////////////////////////////////////////////////////////////////////
-    // capability names
+    // codec names
 
     scope().attr("CODEC_NULL") = XN_CODEC_NULL;
     scope().attr("CODEC_UNCOMPRESSED") = XN_CODEC_UNCOMPRESSED;
@@ -585,11 +586,17 @@ BOOST_PYTHON_MODULE(openni) {
 
             //methods
             .def("create", &Recorder_Create_wrapped)
-            .def("set_destination", &Recorder_SetDestination_wrapped)
             .def("rem_node_from_rec", &Recorder_RemoveNodeFromRecording_wrapped)
             .def("add_node_to_rec", &Recorder_AddNodeToRecording_wrapped)
             .def("add_node_to_rec", &Recorder_AddNodeToRecording_WithComp_wrapped)
             .def("record", &Recorder_Record_wrapped)
+
+            //properties
+            .add_property("destination", 
+                make_function(
+                    &Recorder_GetDestination_wrapped, 
+                    return_value_policy<return_by_value>()), 
+                &Recorder_SetDestination_wrapped)
             ;
 
 
@@ -600,6 +607,18 @@ BOOST_PYTHON_MODULE(openni) {
             bases<xn::ProductionNode > >("Player")
 
             //methods
+            .def("create", &Player_Create_wrapped)
+            .def("set_repeat", &Player_SetRepeat)
+            .def("read_next", &Player_ReadNext)
+
+            //properties
+            .add_property("source", 
+                make_function(
+                    &Player_GetSource, 
+                    return_value_policy<return_by_value>()), 
+                &Player_SetSource)
+            .add_property("playback_speed", &Player_GetPlaybackSpeed, &Player_SetPlaybackSpeed)
+            .add_property("eof", &Player_IsEOF)
             ;
 
 

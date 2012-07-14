@@ -17,7 +17,7 @@ ctx = Context()
 ctx.init()
 
 # Open recording 
-player = ctx.open_file_recording("tempRec.oni")
+ctx.open_file_recording("tempRec.oni")
 
 ctx.start_generating_all()
 depth = ctx.find_existing_node(NODE_TYPE_DEPTH)

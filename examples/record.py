@@ -27,7 +27,7 @@ recorder = Recorder()
 recorder.create(ctx)
 
 # Init it
-recorder.set_destination("tempRec.oni")
+recorder.destination = "tempRec.oni"
 
 # Add depth node to recording
 recorder.add_node_to_rec(depth, CODEC_16Z_EMB_TABLES)

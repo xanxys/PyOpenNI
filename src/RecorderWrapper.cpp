@@ -36,10 +36,17 @@ void Recorder_SetDestination_wrapped(xn::Recorder& self, const std::string& strD
     check( self.SetDestination(XN_RECORD_MEDIUM_FILE, strDest.c_str()) );
 }
 
+std::string Recorder_GetDestination_wrapped(xn::Recorder& self) {
+    checkValid(self);  
 
-// std:string Recorder_GetDestination_wrapped(xn::Recorder& self, XnRecordMedium destType) {
+    XnUInt32 nBufSize = 1024;
+    XnChar buf[1024];
+    XnRecordMedium * medium = new XnRecordMedium;
+    check( self.GetDestination(*medium, (XnChar*)(&buf), nBufSize) );
+    delete medium;
+    return std::string(buf);
 
-// }
+}
 
 void Recorder_AddNodeToRecording_wrapped(xn::Recorder& self, xn::ProductionNode& node) {
     Recorder_AddNodeToRecording_WithComp_wrapped(self, node, NULL);
@@ -48,7 +55,6 @@ void Recorder_AddNodeToRecording_wrapped(xn::Recorder& self, xn::ProductionNode&
 void Recorder_AddNodeToRecording_WithComp_wrapped(xn::Recorder& self, xn::ProductionNode& node, unsigned int compression) {
     checkValid(self);  
 
-    // TODO: Add support for passing a CODEC other than the default?
     check( self.AddNodeToRecording(node, compression) );
 }
 

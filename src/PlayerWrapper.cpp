@@ -27,5 +27,56 @@
 #include "wrapperExceptions.h"
 
 
+void Player_Create_wrapped(xn::Player& self, xn::Context& ctx) {
+    check( self.Create(ctx, "oni") );
+}
+
+void Player_SetRepeat(xn::Player& self, XnBool bRepeat) {
+    checkValid(self);  
+
+    check( self.SetRepeat(bRepeat) );
+}
+
+void Player_ReadNext(xn::Player& self) {
+    checkValid(self);  
+
+    check( self.ReadNext() );
+}
+
+XnBool Player_IsEOF(xn::Player& self) {
+    checkValid(self);  
+
+    return self.IsEOF();
+}
+
+void Player_SetSource(xn::Player& self, const std::string &sourceFile) {
+    checkValid(self);  
+
+    check( self.SetSource(XN_RECORD_MEDIUM_FILE, sourceFile.c_str()) );
+}
+
+std::string Player_GetSource(xn::Player& self) {
+    checkValid(self);  
+
+    XnUInt32 nBufSize = 1024;
+    XnChar buf[1024];
+    XnRecordMedium * medium = new XnRecordMedium;
+    check( self.GetSource(*medium, (XnChar*)(&buf), nBufSize) );
+    delete medium;
+    return std::string(buf);
+}
+
+XnDouble Player_GetPlaybackSpeed(xn::Player& self) {
+    checkValid(self);  
+
+    return self.GetPlaybackSpeed();
+}
+
+
+void Player_SetPlaybackSpeed(xn::Player& self, XnDouble dSpeed) {
+    checkValid(self);  
+
+    check( self.SetPlaybackSpeed(dSpeed) );
+}
 
 
