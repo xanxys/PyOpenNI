@@ -134,6 +134,11 @@ XnSkeletonJointTransformation SkeletonCapability_GetJoint_wrapped(xn::SkeletonCa
     check( self.GetSkeletonJoint(user, joint, ret) );
     return ret;
 }
+XnConfidence SkeletonCapability_GetJointConfidence_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint) {
+    XnSkeletonJointPosition ret;
+    check( self.GetSkeletonJointPosition(user, joint, ret) );
+    return ret.fConfidence;
+}
 
 /** Internal callback implementations **/
 

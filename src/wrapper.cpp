@@ -526,6 +526,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("get_joint", &SkeletonCapability_GetJoint_wrapped)
             .def("get_joint_orientation", &SkeletonCapability_GetJointOrientation_wrapped)
             .def("get_joint_position", &SkeletonCapability_GetJointPosition_wrapped)
+            .def("get_joint_confidence", &SkeletonCapability_GetJointConfidence_wrapped)
 
             .def("register_c_start_cb", &SkeletonCapability_RegisterCalibrationStart, return_value_policy<return_opaque_pointer>())
             .def("register_c_complete_cb", &SkeletonCapability_RegisterCalibrationComplete, return_value_policy<return_opaque_pointer>())
