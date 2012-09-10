@@ -62,7 +62,6 @@ void SkeletonCapability_UnregisterCalibrationInProgress(xn::SkeletonCapability& 
 /** Getting individual joints orientation/position **/
 XnSkeletonJointOrientation SkeletonCapability_GetJointOrientation_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
 XnSkeletonJointPosition SkeletonCapability_GetJointPosition_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
-XnConfidence SkeletonCapability_GetJointConfidence_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
 XnSkeletonJointTransformation SkeletonCapability_GetJoint_wrapped(xn::SkeletonCapability& self, XnUserID user, XnSkeletonJoint joint);
 
 /** Internal callback implementations **/
