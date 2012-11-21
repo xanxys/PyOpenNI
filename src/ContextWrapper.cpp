@@ -122,6 +122,41 @@ BP::object Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeT
     return wrapNode(ret);
 }
 
+BP::object Context_EnumerateExistingNodes_wrapped(xn::Context& self) {
+    BP::list res = BP::list();
+
+    // convert NodeInfoList to python list while mapping NodeInfo to NodeHandle
+    XnNodeInfoList *list;
+    xnEnumerateExistingNodes(self.GetUnderlyingObject(), &list);
+    XnNodeInfoListIterator it = xnNodeInfoListGetFirst(list);
+    while(xnNodeInfoListIteratorIsValid(it)) {
+        XnNodeInfo *info = xnNodeInfoListGetCurrent(it);
+        //PyList_Append(res, );
+        res.append(wrapNode(xnNodeInfoGetRefHandle(info)));
+        it = xnNodeInfoListGetNext(it);
+    }
+
+    xnNodeInfoListFree(list);
+    return res;
+}
+
+BP::object Context_EnumerateProductionTrees_wrapped(xn::Context& self) {
+    BP::list res = BP::list();
+
+    // convert NodeInfoList to list of NodeInfo objects
+    XnNodeInfoList *list;
+    xnEnumerateProductionTrees(self.GetUnderlyingObject(), XN_NODE_TYPE_DEVICE, NULL, &list, NULL);
+    XnNodeInfoListIterator it = xnNodeInfoListGetFirst(list);
+    while(xnNodeInfoListIteratorIsValid(it)) {
+        XnNodeInfo *info = xnNodeInfoListGetCurrent(it);
+        res.append(BP::object(xn::NodeInfo(info)));
+        it = xnNodeInfoListGetNext(it);
+    }
+
+    xnNodeInfoListFree(list);
+    return res;
+}
+
 void Context_StartGeneratingAll_wrapped(xn::Context& self) {
     check( self.StartGeneratingAll() );
 }

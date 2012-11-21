@@ -40,6 +40,10 @@ void Context_StartGeneratingAll_wrapped(xn::Context& self);
 void Context_StopGeneratingAll_wrapped(xn::Context& self);
 
 BP::object Context_FindExistingNode_wrapped(xn::Context& self, XnProductionNodeType type);
+BP::object Context_EnumerateExistingNodes_wrapped(xn::Context& self);
+
+BP::object Context_EnumerateProductionTrees_wrapped(xn::Context& self);
+//BP::object Context_Enumerate
 
 void Context_Shutdown_wrapped(xn::Context& self);
 

@@ -67,6 +67,8 @@ set (SOURCES
     wrapperDocstrings.h
     VersionWrapper.cpp
     VersionWrapper.h
+    NodeInfoWrapper.cpp
+    NodeInfoWrapper.h
     OutputMetaDataWrapper.cpp
     OutputMetaDataWrapper.h
     MapMetaDataWrapper.cpp

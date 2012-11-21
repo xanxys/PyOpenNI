@@ -29,6 +29,7 @@
 
 #include "ContextWrapper.h"
 #include "VersionWrapper.h"
+#include "NodeInfoWrapper.h"
 #include "OutputMetaDataWrapper.h"
 #include "MapMetaDataWrapper.h"
 #include "DepthMetaDataWrapper.h"
@@ -299,6 +300,11 @@ BOOST_PYTHON_MODULE(openni) {
             .def("__str__", &Version__str__,
                     "Returns a string representation of this version.");
 
+    ////////////////////////////////////////////////////////////////////////////
+    // class NodeInfo
+    class_< xn::NodeInfo > ("NodeInfo", "Represents configuration and dependency of a node.", no_init)
+            .def("get_instance_name", NodeInfo_GetInstanceName_wrapped)
+            .def("get_creation_info", NodeInfo_GetCreationInfo_wrapped);
 
     ////////////////////////////////////////////////////////////////////////////
     // class DepthMap
@@ -557,6 +563,8 @@ BOOST_PYTHON_MODULE(openni) {
             .def("start_generating_all", &Context_StartGeneratingAll_wrapped, Context_StartGeneratingAll_DOC)
             .def("stop_generating_all", &Context_StopGeneratingAll_wrapped, Context_StopGeneratingAll_DOC)
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
+            .def("enumerate_existing_nodes", &Context_EnumerateExistingNodes_wrapped)
+            .def("enumerate_production_trees", &Context_EnumerateProductionTrees_wrapped)
             .def("open_file_recording", &Context_OpenFileRecording_wrapped, Context_OpenFileRecording_DOC)
 
             .add_property("valid", &Context_IsValid, Context_valid_DOC)
