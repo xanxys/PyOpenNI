@@ -570,6 +570,7 @@ BOOST_PYTHON_MODULE(openni) {
             .def("find_existing_node", &Context_FindExistingNode_wrapped)
             .def("enumerate_existing_nodes", &Context_EnumerateExistingNodes_wrapped)
             .def("enumerate_production_trees", &Context_EnumerateProductionTrees_wrapped)
+            .def("create_production_tree", &Context_CreateProductionTree_wrapped)
             .def("open_file_recording", &Context_OpenFileRecording_wrapped, Context_OpenFileRecording_DOC)
 
             .add_property("valid", &Context_IsValid, Context_valid_DOC)

@@ -79,6 +79,10 @@ BP::object wrapNode(XnNodeHandle node) {
     throw BP::error_already_set();
 }
 
+BP::object wrapNode(xn::ProductionNode& node){
+    return wrapNode(node.GetHandle());
+}
+
 XnBool isInstanceOf(XnProductionNodeType deriv, XnProductionNodeType base) {
     if (deriv == base) {
         return true;

@@ -22,7 +22,7 @@
 # ***** END GPL LICENSE BLOCK *****
 
 """
-Prinnt out list of Nodes you can create.
+Prinn out list of Device nodes you can create.
 """
 
 import openni
@@ -30,7 +30,9 @@ import openni
 ctx = openni.Context()
 ctx.init()
 
-for info in ctx.enumerate_production_trees():
+ns = ctx.enumerate_production_trees(openni.NODE_TYPE_DEVICE)
+print len(ns), 'devices found'
+for info in ns:
 	print '========================================'
 	print 'node_type', info.get_node_type()
 	print 'vendor', info.get_vendor()

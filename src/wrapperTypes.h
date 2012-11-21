@@ -40,6 +40,7 @@ namespace BP = boost::python;
 namespace pyopenni {};
 
 BP::object wrapNode(XnNodeHandle node);
+BP::object wrapNode(xn::ProductionNode& node);
 
 XnBool isInstanceOf(XnProductionNodeType base, XnProductionNodeType deriv);
 
