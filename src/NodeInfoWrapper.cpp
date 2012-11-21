@@ -26,6 +26,22 @@
 #include "wrapperTypes.h"
 #include "wrapperExceptions.h"
 
+XnProductionNodeType NodeInfo_GetNodeType_wrapped(xn::NodeInfo& self){
+	return self.GetDescription().Type;
+}
+
+std::string NodeInfo_GetVendor_wrapped(xn::NodeInfo& self){
+	return std::string(self.GetDescription().strVendor);
+}
+
+std::string NodeInfo_GetName_wrapped(xn::NodeInfo& self){
+	return std::string(self.GetDescription().strName);
+}
+
+XnVersion NodeInfo_GetVersion_wrapped(xn::NodeInfo& self){
+	return self.GetDescription().Version;
+}
+
 std::string NodeInfo_GetInstanceName_wrapped(xn::NodeInfo& self){
 	return std::string(self.GetInstanceName());
 }

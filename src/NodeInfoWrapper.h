@@ -27,14 +27,31 @@
 #include "wrapperTypes.h"
 
 /*
+TODO: create XnProductionNodeDescription wrapper if this type is to be
+used in other classes too. Exposing these fields as NodeInfo methods
+for the time being...
+
 NodeInfo & 	operator= (const NodeInfo &other)
  	operator XnNodeInfo * ()
 XnStatus 	SetInstanceName (const XnChar *strName)
 const XnProductionNodeDescription & 	GetDescription () const
+	XnProductionNodeType 	Type
+	XnChar 	strVendor [XN_MAX_NAME_LENGTH]
+	XnChar 	strName [XN_MAX_NAME_LENGTH]
+	XnVersion 	Version
 const XnChar * 	GetInstanceName () const
 const XnChar * 	GetCreationInfo () const
 const void * 	GetAdditionalData () const
+
+interface usable from Context:
+NodeInfoList & 	GetNeededNodes () const
+XnStatus 	GetInstance (ProductionNode &node) const
 */
+
+XnProductionNodeType NodeInfo_GetNodeType_wrapped(xn::NodeInfo& self);
+std::string NodeInfo_GetVendor_wrapped(xn::NodeInfo& self);
+std::string NodeInfo_GetName_wrapped(xn::NodeInfo& self);
+XnVersion NodeInfo_GetVersion_wrapped(xn::NodeInfo& self);
 
 std::string NodeInfo_GetInstanceName_wrapped(xn::NodeInfo& self);
 std::string NodeInfo_GetCreationInfo_wrapped(xn::NodeInfo& self);

@@ -303,6 +303,11 @@ BOOST_PYTHON_MODULE(openni) {
     ////////////////////////////////////////////////////////////////////////////
     // class NodeInfo
     class_< xn::NodeInfo > ("NodeInfo", "Represents configuration and dependency of a node.", no_init)
+            .def("get_node_type", NodeInfo_GetNodeType_wrapped)
+            .def("get_vendor", NodeInfo_GetVendor_wrapped)
+            .def("get_name", NodeInfo_GetName_wrapped)
+            .def("get_version", NodeInfo_GetVersion_wrapped)
+            
             .def("get_instance_name", NodeInfo_GetInstanceName_wrapped)
             .def("get_creation_info", NodeInfo_GetCreationInfo_wrapped);
 
